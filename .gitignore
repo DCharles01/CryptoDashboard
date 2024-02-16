@@ -2,5 +2,6 @@ venv
 *.tf
 .env
 .idea
+__pycache__
 
 

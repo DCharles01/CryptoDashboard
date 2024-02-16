@@ -2,3 +2,10 @@ awswrangler
 prefect
 requests
 pandas
+datetime
+pytest
+pytest-mypy
+psycopg2-binary
+sqlalchemy
+python-dotenv
+dbt-core
