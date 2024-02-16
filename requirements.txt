@@ -1,0 +1,4 @@
+awswrangler
+prefect
+requests
+pandas
