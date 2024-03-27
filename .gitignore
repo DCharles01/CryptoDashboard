@@ -1,0 +1,7 @@
+venv
+*.tf
+.env
+.idea
+__pycache__
+backend/etl/coinapi_extractor/data
+
