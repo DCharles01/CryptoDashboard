@@ -12,6 +12,8 @@ s3_key = 'assets/'
 path = f"data/{datetime.datetime.today().strftime('%Y-%m-%d')}_crypto_assets.json"
 
 
+
+
 @task
 def extract_assets_from_coin_api(url: str) -> dict:
     response = requests.get(url)
@@ -44,6 +46,18 @@ def save_to_s3_bucket(file_path: str, s3_bucket: str, s3_key: str) -> None:
 
 @flow
 def extract_save_upload_to_s3():
+
+    try:
+        # Attempt to create the directory
+        if not os.path.exists('data'):
+            os.makedirs('data')
+    except Exception as e:
+        # Handle any exceptions that occur during directory creation
+        print(f"An error occurred while creating the directory: {e}")
+    else:
+        # If no exceptions occurred, print success message
+        print(f"Directory '{directory_path}' created successfully.")
+
     data = extract_assets_from_coin_api("http://api.coincap.io/v2/assets")
 
     save_json_locally(data)
@@ -58,7 +72,7 @@ if __name__ == "__main__":
         name="crypto_assets",
         flow=extract_save_upload_to_s3,
         version=1,
-        schedule=CronSchedule(cron="0 0 * * *", timezone="America/New_York"),
+        schedule=CronSchedule(cron="* * * * *", timezone="America/New_York"),
         is_schedule_active=True,
         work_queue_name="default",
         entrypoint="./coinapi_crypto_assets_adapter.py:extract_save_upload_to_s3",

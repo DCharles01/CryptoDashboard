@@ -4,4 +4,4 @@ venv
 .idea
 __pycache__
 backend/etl/coinapi_extractor/data
-
+macbook_air_venv

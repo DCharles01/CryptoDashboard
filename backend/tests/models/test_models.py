@@ -10,7 +10,7 @@ def create_crypto():
 
 @pytest.fixture
 def create_crypto_price(create_crypto):
-    crypto_price = models.CryptoPrices(symbol=create_crypto, price_usd=52000, timestamp=46392902374839328)
+    crypto_price = models.CryptoPrice(symbol=create_crypto, price_usd=52000, timestamp=46392902374839328)
 
     yield crypto_price
 
